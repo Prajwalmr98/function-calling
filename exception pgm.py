@@ -34,7 +34,7 @@ class Department(Base):
     def __repr__(self):
         return f"({self.loc}) {self.dname} owned by {self.deptno}"
 
-# Use autoincrement for deptno or specify a sequence if necessary
+
 engine = create_engine("sqlite:///db3.db", echo=True)
 Base.metadata.create_all(bind=engine)
 
@@ -119,17 +119,21 @@ for output in join:
     print(output)
 
 session.close()
+
 #left outerjoin
 leftouter_join=session.query(Employee,Department).outerjoin(Department)
 for result in leftouter_join:
     print(result)
+
 #right_outerjoin
 right_outerjoin=session.query(Employee,Department).outerjoin(Employee)
 for results in right_outerjoin:
     print(results)
+
 #full_outerjoin
 full_outerjoin=leftouter_join.union(right_outerjoin)
 for output in full_outerjoin:
+    print(output)
     print(output)
 
 
